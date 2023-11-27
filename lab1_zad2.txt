@@ -1,0 +1,19 @@
+% Baza wiedzy o sposobach spędzania czasu
+spedzanie_czasu(jan, sport).
+spedzanie_czasu(anna, muzyka).
+spedzanie_czasu(tomasz, czytanie).
+
+% Baza wiedzy o wieku
+wiek(jan, 40).
+wiek(anna, 35).
+wiek(tomasz, 25).
+
+% Reguła porównująca wiek
+starszy(X, Y):- wiek(X, WiekX), wiek(Y, WiekY), WiekX > WiekY.
+mlodszy(X, Y):- wiek(X, WiekX), wiek(Y, WiekY), WiekX < WiekY.
+rowny_wiek(X, Y):- wiek(X, WiekX), wiek(Y, WiekY), WiekX =:= WiekY.
+
+% Przykładowe zapytania
+?- spedzanie_czasu(jan, X), spedzanie_czasu(anna, Y). % Jak spędzają czas Jan i Anna?
+?- starszy(jan, tomasz). % Kto jest starszy: Jan czy Tomasz?
+% ...

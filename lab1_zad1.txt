@@ -1,0 +1,44 @@
+% Baza wiedzy
+rodzic(zofia, marcin).
+rodzic(andrzej, marcin).
+rodzic(andrzej, kasia).
+rodzic(marcin, ania).
+rodzic(marcin, krzys).
+rodzic(krzys, mikolaj).
+
+kobieta(zofia).
+kobieta(kasia).
+kobieta(ania).
+
+mezczyzna(andrzej).
+mezczyzna(marcin).
+mezczyzna(krzys).
+mezczyzna(mikolaj).
+
+potomek(Y, X):- rodzic(X, Y).
+
+matka(X, Y):- rodzic(X, Y), kobieta(X).
+
+dziadek(X, Z):- rodzic(X, Y), rodzic(Y, Z), mezczyzna(X).
+
+siostra(X, Y):- rodzic(Z, X), rodzic(Z, Y), kobieta(X), X \= Y.
+
+starszy(X, Y):- wiek(X, WiekX), wiek(Y, WiekY), WiekX > WiekY.
+mlodszy(X, Y):- wiek(X, WiekX), wiek(Y, WiekY), WiekX < WiekY.
+rowny_wiek(X, Y):- wiek(X, WiekX), wiek(Y, WiekY), WiekX =:= WiekY.
+
+% Przykładowe fakty o wieku
+wiek(zofia, 60).
+wiek(kasia, 30).
+wiek(ania, 28).
+wiek(andrzej, 65).
+wiek(marcin, 35).
+wiek(krzys, 15).
+wiek(mikolaj, 5).
+% ...
+
+% Przykładowe zapytania
+?- matka(X, marcin). % Kto jest matką Marcina?
+?- dziadek(X, mikolaj). % Kto jest dziadkiem Mikołaja?
+?- siostra(X, ania). % Kto jest siostrą Ani?
+% ...

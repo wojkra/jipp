@@ -1,0 +1,15 @@
+% Baza wiedzy o rodzinie
+osoba(jan, adam, ewa, mezczyzna, 30).
+osoba(anna, adam, ewa, kobieta, 28).
+osoba(tomasz, jan, anna, mezczyzna, 5).
+
+rodzic(X, Y) :- osoba(Y, X, _, _, _).
+rodzic(X, Y) :- osoba(Y, _, X, _, _).
+
+siostra(X, Y) :- osoba(X, Ojciec, Matka, kobieta, _), osoba(Y, Ojciec, Matka, kobieta, _), X \= Y.
+brat(X, Y) :- osoba(X, Ojciec, Matka, mezczyzna, _), osoba(Y, Ojciec, Matka, mezczyzna, _), X \= Y.
+
+% Przykładowe zapytania
+?- siostra(anna, tomasz). % Czy Anna jest siostrą Tomasza?
+?- brat(jan, tomasz). % Czy Jan jest bratem Tomasza?
+% ...
