@@ -1,0 +1,34 @@
+% Baza wiedzy
+rzecz(kot).
+rzecz(piłka).
+rzecz(fartuch).
+rzecz(tarka).
+rzecz(drzewo).
+
+czas(odbija_się).
+czas(miałczy).
+czas(wisi).
+czas(trze).
+czas(kwitnie).
+
+przym(miły).
+przym(czerwony).
+przym(duży).
+przym(ostry).
+przym(piękny).
+
+
+% Reguła sprawdzająca poprawnośc zdania dla 3 słów
+zdanie(Czas, Rzecz1, Rzecz2) :-
+    czas(Czas),
+    rzecz(Rzecz1),
+    rzecz(Rzecz2).
+
+
+% Reguła sprawdzająca poprawność zdania dla 5 słów
+zdanie_5_slow(Czas, Rzecz1, Przym1, Rzecz2, Przym2) :-
+    czas(Czas),
+    rzecz(Rzecz1),
+    rzecz(Rzecz2),
+    przym(Przym1),
+    przym(Przym2).

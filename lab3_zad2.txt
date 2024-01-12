@@ -1,0 +1,17 @@
+%Baza wiedzy
+rzecz(kot).
+rzecz(piłka).
+rzecz(fartuch).
+rzecz(tarka).
+rzecz(drzewo).
+
+czas(odbija_się).
+czas(miałczy).
+czas(wisi).
+czas(trze).
+czas(kwitnie).
+
+zdanie(Czas, Rzecz1, Rzecz2) :-
+    czas(Czas),
+    rzecz(Rzecz1),
+    rzecz(Rzecz2).
