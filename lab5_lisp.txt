@@ -1,0 +1,46 @@
+1. Zarządzanie biblioteką
+;; Definicja struktury książki
+(defstruct ksiazka
+  tytul
+  autorzy
+  wydawnictwo
+  rok-wydania
+  isbn)
+
+;; Przechowywanie książek w bibliotece
+(defvar *biblioteka* '())
+
+;; Dodawanie książki
+(defun dodaj-ksiazke (tytul autorzy wydawnictwo rok-wydania isbn)
+  (push (make-ksiazka :tytul tytul :autorzy autorzy :wydawnictwo wydawnictwo :rok-wydania rok-wydania :isbn isbn) *biblioteka*))
+
+;; Usuwanie książki
+(defun usun-ksiazke (isbn)
+  (setf *biblioteka* (remove-if (lambda (ksiazka) (equal (ksiazka-isbn ksiazka) isbn)) *biblioteka*)))
+
+;; Wyszukiwanie książek
+(defun znajdz-ksiazki (szukany-atrybut wartosc)
+  (remove-if-not (lambda (ksiazka) (equal (eval `(ksiazka-,szukany-atrybut ksiazka)) wartosc)) *biblioteka*))
+
+
+2. Rejestr ocen studenta
+;; Definicja klasy student
+(defclass student ()
+  ((imie :accessor imie :initarg :imie)
+   (nazwisko :accessor nazwisko :initarg :nazwisko)
+   (album :accessor album :initarg :album)
+   (id-przedmiot :accessor id-przedmiot :initarg :id-przedmiot)
+   (semestr :accessor semestr :initarg :semestr)
+   (ocena :accessor ocena :initarg :ocena)
+   (termin :accessor termin :initarg :termin)))
+
+;; Przechowywanie danych studentów
+(defvar *rejestr-studentow* '())
+
+;; Dodawanie oceny studenta
+(defun dodaj-ocene (imie nazwisko album id-przedmiot semestr ocena termin)
+  (push (make-instance 'student :imie imie :nazwisko nazwisko :album album :id-przedmiot id-przedmiot :semestr semestr :ocena ocena :termin termin) *rejestr-studentow*))
+
+;; Wyszukiwanie danych studenta
+(defun znajdz-studenta (szukany-atrybut wartosc)
+  (remove-if-not (lambda (stud) (equal (eval `(,(intern (string-upcase (symbol-name szukany-atrybut)) 'student) stud)) wartosc)) *rejestr-studentow*))
