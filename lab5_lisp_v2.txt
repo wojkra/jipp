@@ -1,0 +1,43 @@
+Łączenie dwóch list:
+(defun merge-lists (list1 list2)
+  (append list1 list2))
+
+Odwracanie listy:
+(defun reverse-list (lst)
+  (reverse lst))
+
+Sprawdzanie, czy lista jest palindromem:
+(defun is-palindrome (lst)
+  (equal lst (reverse lst)))
+
+Sortowanie listy liczb całkowitych:
+(defun sort-list (lst)
+  (sort (copy-seq lst) #'<))
+
+Iloczyn dwóch list liczbowych:
+(defun product-of-lists (list1 list2)
+  (mapcar #'* list1 list2))
+
+Zliczanie liczb podzielnych przez trzy:
+(defun count-divisible-by-three (lst)
+  (count-if (lambda (x) (zerop (mod x 3))) lst))
+
+Liczba elementów podzielnych przez N:
+(defun count-divisible-by-n (lst n)
+  (count-if (lambda (x) (zerop (mod x n))) lst))
+
+Wybór wartości podzielnych przez 5 ze stosu:
+(defun filter-divisible-by-five (stack)
+  (let ((result nil))
+    (dolist (item stack)
+      (when (zerop (mod item 5))
+        (push item result)))
+    result))
+
+Generowanie listy liczb całkowitych z przedziału <A, B>:
+(defun generate-range (a b)
+  (loop for i from a to b collect i))
+
+Generowanie listy znaków z przedziału kodów ASCII:
+(defun generate-ascii-range (a b)
+  (loop for i from a to b collect (code-char i)))
